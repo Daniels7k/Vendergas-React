@@ -2,7 +2,7 @@ import React from "react";
 import Sidebar from "../../Components/Sidebar"
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import FormDialog from "../../Components/FormDialog";
+import EmpresaDialog from "../../Components/FormDialog/EmpresaDialog";
 
 import "./style.css"
 
@@ -18,7 +18,7 @@ function Empresas() {
 
                 <div className="empresas-container-background">
 
-                    <FormDialog nome={
+                    <EmpresaDialog nome={
                         <div className="empresas-container-header">
                             <AddBoxIcon sx={{ fontSize: 60 }} />
                             <h1>Adicionar Empresa</h1>
@@ -31,7 +31,7 @@ function Empresas() {
                             <h5 className="empresa-info">Razão Social: Edu Lanches</h5>
                             <h5 className="empresa-info">CNPJ: XX. XXX. XXX/0001-XX</h5>
                             <div className="row">Dados</div>
-                            <div className="row"><FormDialog nome={"Editar"} /></div>
+                            <div className="row"><EmpresaDialog nome={"Editar"} /></div>
                             <div className="row row-excluir">Excluir</div>
                         </div>
 

@@ -7,6 +7,7 @@ import {
 } from "react-router-dom"
 import Login from "./Pages/Login"
 import Empresas from "./Pages/Empresas";
+import Clientes from "./Pages/Clientes"
 
 
 function AppRoutes () {
@@ -15,6 +16,7 @@ function AppRoutes () {
             <Routes>
             <Route exact path="/login" element={<Login/>}  />
             <Route exact path="/empresas" element={<Empresas/>}  />
+            <Route exact path="/clientes" element={<Clientes/>}  />
             </Routes>
         </Router>
     )
