@@ -1,6 +1,7 @@
 import React from "react";
 import HomeIcon from '@mui/icons-material/Home';
 import ApartmentIcon from '@mui/icons-material/Apartment';
+import InventoryIcon from '@mui/icons-material/Inventory';
 
 
 export const SidebarData = [
@@ -13,6 +14,11 @@ export const SidebarData = [
         title: "Empresas",
         icon: <ApartmentIcon />,
         link: "/Empresas" ,
+    },
+    {
+        title: "Produtos",
+        icon: <InventoryIcon />,
+        link: "/produtos" ,
     },
     {
         title: "Clientes",
