@@ -8,6 +8,7 @@ import {
 import Login from "./Pages/Login"
 import Empresas from "./Pages/Empresas";
 import Clientes from "./Pages/Clientes"
+import Produtos from "./Pages/Produtos"
 
 
 function AppRoutes () {
@@ -17,6 +18,7 @@ function AppRoutes () {
             <Route exact path="/login" element={<Login/>}  />
             <Route exact path="/empresas" element={<Empresas/>}  />
             <Route exact path="/clientes" element={<Clientes/>}  />
+            <Route exact path="/produtos" element={<Produtos/>}  />
             </Routes>
         </Router>
     )

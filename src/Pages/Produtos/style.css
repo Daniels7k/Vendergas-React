@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Akshar:wght@500&display=swap');
+
+.produto-flex{
+    display: flex;
+}
+
+.produto-background{
+    width: 80%;
+    margin-left: 40px;
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.produto-header{
+    color: #5031a2;
+    border: 1px solid gray;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    margin-bottom: 40px;
+}
+.produto-container-background{
+    border: 1px solid gray;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.produto-container-header{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px gray solid;
+    color: #5031a2;
+}
+
+.produto-container-header:hover{
+    cursor: pointer;
+    background-color: #5031a2;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    color: white;
+}
+
+.produto-container-header h1{
+    margin: 0;
+}
+
+
+.produto-container{
+    display: flex;
+    flex-direction: column;
+    height: 75vh;
+    overflow:auto;
+    text-align: center;
+}
+
+.produto-box{
+    width: 100%;
+    display: flex;
+    height: 25px;
+    margin-bottom: 27px;
+    align-items: center;
+}
+
+.produto-info-header{
+    font-family: 'Akshar', sans-serif;
+    border-right: 1px solid white;
+    width: 100%;
+    font-size: 25px;
+    height: 21px;
+    padding: 15px;
+    background-color: #5031a2;
+    color: white;
+}
+
+.button{
+    background-color: #5031a2;
+    color: white;
+}
+.button:hover{
+cursor: pointer;
+background-color: #4722ad;
+}
+
+.produto-info{
+    font-size: 20px;
+    font-family: 'Akshar', sans-serif;
+    border-bottom: 1px solid #5031a2;
+    border-right: 1px solid #5031a2;
+    width: 100%;
+    height: 20px;
+    padding: 15px;
+}
