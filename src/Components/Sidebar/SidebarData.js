@@ -15,6 +15,11 @@ export const SidebarData = [
         link: "/Empresas" ,
     },
     {
+        title: "Clientes",
+        icon: <ApartmentIcon />,
+        link: "/clientes" ,
+    },
+    {
         title: "Logout",
         icon: <HomeIcon />,
         link: "/Logout" ,

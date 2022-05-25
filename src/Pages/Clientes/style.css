@@ -1,0 +1,92 @@
+.cliente-flex{
+    display: flex;
+}
+
+.cliente-background{
+    width: 80%;
+    margin-left: 40px;
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.cliente-header{
+    color: #5031a2;
+    border: 1px solid gray;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    margin-bottom: 40px;
+}
+.cliente-container-background{
+    border: 1px solid gray;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.cliente-container-header{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px gray solid;
+    color: #5031a2;
+}
+
+.cliente-container-header:hover{
+    cursor: pointer;
+    background-color: #5031a2;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    color: white;
+}
+
+.cliente-container-header h1{
+    margin: 0;
+}
+
+.cliente-info{
+    margin: 0px;
+    margin-bottom: 5px;
+}
+
+.cliente-container{
+    display: flex;
+    height: 75vh;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    overflow:auto;
+}
+
+.cliente-box{
+    color: white;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    background-color: #5031a2;
+    border-radius: 10px;
+    width: 280px;
+    height: 280px;
+    margin: 30px;
+}
+
+.cliente-box .icon{
+    width: 100%;
+}
+
+.cliente-box .row{
+    padding: 10px;
+    border-top: 1px solid white;
+}
+
+.cliente-box .row-excluir{
+    border-bottom-left-radius: 10px ;
+    border-bottom-right-radius: 10px ;
+}
+
+.cliente-box .row:hover{
+    cursor: pointer;
+    background-color: #4722ad;
+    border-top: 1px solid white;
+}
