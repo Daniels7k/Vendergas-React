@@ -5,13 +5,16 @@ import {
     Routes,
     Navigate
 } from "react-router-dom"
+import Login from "./Pages/Login"
+
+
 
 function AppRoutes () {
     return (
         <Router>
             <Routes>
-            <Route exact path="/login" />
-            <Route exact path="/home" />
+            <Route exact path="/login" element={<Login/>}  />
+            
             </Routes>
         </Router>
     )
