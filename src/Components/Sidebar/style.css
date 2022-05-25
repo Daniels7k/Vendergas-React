@@ -1,6 +1,6 @@
 .sidebar-container{
-    background-color: #2f4050;
-    height: 100%;
+    background-color: #5031a2;
+    height: 100vh;
     width: 300px;
 }
 
@@ -45,11 +45,11 @@ text-align: center;
 
 .sidebar-row:hover{
     cursor: pointer;
-    background-color: #293846;
+    background-color: #4722ad;
 }
 
 .sidebar-list #active{
-    background-color: #293846;
+    background-color: #4722ad;
 }
 
 .sidebar-row #icon{
