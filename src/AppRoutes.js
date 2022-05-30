@@ -10,6 +10,7 @@ import { AuthProvider, AuthContext } from "./contexts/AuthContext";
 
 
 import Login from "./Pages/Login"
+import PageLayout from "./Components/PageLayout"
 import Empresas from "./Pages/Empresas";
 import Clientes from "./Pages/Clientes"
 import Produtos from "./Pages/Produtos"
@@ -36,6 +37,7 @@ function AppRoutes() {
 
             <AuthProvider>
                 <Routes>
+                    <Route exact path="/test" element={<PageLayout/>} />
                     <Route exact path="/login" element={<Login />} />
                     <Route exact path="/empresas" element={<Private><Empresas /></Private>} />
                     <Route exact path="/clientes" element={<Clientes />} />
