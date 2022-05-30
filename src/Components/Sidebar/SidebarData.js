@@ -13,7 +13,7 @@ export const SidebarData = [
     {
         title: "Empresas",
         icon: <ApartmentIcon />,
-        link: "/Empresas" ,
+        link: "/empresas" ,
     },
     {
         title: "Produtos",
@@ -28,6 +28,6 @@ export const SidebarData = [
     {
         title: "Logout",
         icon: <HomeIcon />,
-        link: "/Logout" ,
+        link: "/logout" ,
     }
 ]
