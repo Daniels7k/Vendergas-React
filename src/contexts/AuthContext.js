@@ -27,14 +27,33 @@ function AuthProvider({ children }) {
     function handleLogin(email, senha) {
 
         api.post("/usuarios/login", {email, senha}).then((response) => {
+
+            const userID = response.data.id
+            const userName = response.data.nome
+
             const token = response.data.token
+
+            localStorage.setItem("userID", userID)
             localStorage.setItem("token", JSON.stringify(token))
-            api.defaults.headers.Authorization = token
+            localStorage.setItem("userName", userName )
+
+            api.defaults.headers.Authorization = `Bearer ${token}`
             
             setAuthenticated(true)
+            navigate(`/empresas`)
         })
 
-            navigate("/empresas")
+            
+    }
+
+    function handleLogout () {
+
+        setAuthenticated(false)
+
+        localStorage.clear()
+
+        api.defaults.headers.Authorization = false
+        navigate("/login")
     }
 
     if(loading){
@@ -42,7 +61,7 @@ function AuthProvider({ children }) {
     }
 
     return (
-        <AuthContext.Provider value={{ authenticated, handleLogin}}>
+        <AuthContext.Provider value={{ authenticated, handleLogin, handleLogout}}>
             {children}
         </AuthContext.Provider>
     )

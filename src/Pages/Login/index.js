@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react"
 import "./style.css"
 
 import { AuthContext } from "../../contexts/AuthContext"
-
+import RegistroDialog from "../../dialogsForm/RegistroDialog"
 function Login() {
 
     const { handleLogin } = useContext(AuthContext)
@@ -30,8 +30,8 @@ function Login() {
 
                     <div className="field">
                         {/* name */}
-                        <label htmlFor="name">Nome</label>
-                        <input type="text" name="name" className="inputBox" value={email}  onChange={(e) => {setEmail(e.target.value)}}/>
+                        <label htmlFor="name">Email</label>
+                        <input type="text" name="email" className="inputBox" value={email}  onChange={(e) => {setEmail(e.target.value)}}/>
                     </div>
 
                     <div className="field">
@@ -47,7 +47,7 @@ function Login() {
 
                 <div className="registro">
                     <h5>Novo por aqui? </h5>
-                    CLIQUE AQUI
+                    <RegistroDialog/>
                 </div>
             </div>
         </div>
