@@ -63,6 +63,7 @@ function Pedidos() {
                                         <InfoDialog
                                             produto={val.produto}
                                             quantidade={val.quantidadeProduto}
+                                            observacao={val.observacao}
                                         />
                                     </div>
                                     <div className=" last pedidos-button" onClick={() => deletarPedido(val._id)}>Excluir</div>

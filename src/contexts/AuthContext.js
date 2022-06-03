@@ -37,7 +37,7 @@ function AuthProvider({ children }) {
             localStorage.setItem("token", JSON.stringify(token))
             localStorage.setItem("userName", userName )
 
-            api.defaults.headers.Authorization = `Bearer ${token}`
+            api.defaults.headers.Authorization = token 
             
             setAuthenticated(true)
             navigate(`/empresas`)

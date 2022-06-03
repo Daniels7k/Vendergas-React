@@ -20,12 +20,17 @@ export default function FormDialog(props) {
 
     };
 
-    const handleClose = () => {
+    const handleForm = () => {
         setOpen(false);
         api.post(`/empresas/${props.userID}/create`, { nomeFantasia, razaoSocial, cnpj }).then((response) => {
             console.log(response)
         })
     };
+
+    const handleClose = () => {
+
+        setOpen(false)
+    }
 
     return (
         <div>
@@ -73,7 +78,7 @@ export default function FormDialog(props) {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancelar</Button>
-                    <Button onClick={handleClose}>Adicionar</Button>
+                    <Button onClick={handleForm}>Adicionar</Button>
                 </DialogActions>
             </Dialog>
         </div>

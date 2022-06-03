@@ -24,16 +24,22 @@ export default function FormDialog(props) {
 
     };
 
-    const handleClose = () => {
+    const handleForm = () => {
         api.post(`/clientes/${empresaID}/create`, {nome, email, telefone, empresa}).then((cliente) => {
             console.log(cliente)
         })
         setOpen(false);
     };
 
+    const handleClose = () => {
+
+        setOpen(false)
+    }
+
     return (
         <div>
             <div className="empresas-container-header" variant="outlined" onClick={handleClickOpen}>
+                
                 <AddBoxIcon sx={{ fontSize: 60 }} />
                 <h1>Adicionar Cliente</h1>
             </div>
@@ -42,6 +48,7 @@ export default function FormDialog(props) {
                 <DialogTitle>Adicionar Cliente</DialogTitle>
                 <DialogContent>
                     <TextField
+                        
                         autoFocus
                         margin="dense"
                         id="nome"
@@ -92,7 +99,7 @@ export default function FormDialog(props) {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancelar</Button>
-                    <Button onClick={handleClose}>Adicionar</Button>
+                    <Button onClick={handleForm}>Adicionar</Button>
                 </DialogActions>
             </Dialog>
         </div>

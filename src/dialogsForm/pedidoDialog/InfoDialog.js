@@ -81,7 +81,7 @@ export default function CustomizedDialogs(props) {
                         <strong>Observações:</strong>
                     </Typography>
                     <Typography>
-                        aaaaaaaaaaaaaaaaaaaaaaaaa
+                        {props.observacao}
                     </Typography>
                 </DialogContent>
                 <DialogActions>

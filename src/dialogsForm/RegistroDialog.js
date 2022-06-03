@@ -21,12 +21,17 @@ export default function FormDialog() {
 
     };
 
-    const handleClose = () => {
+    const handleForm = () => {
         api.post("/usuarios/registro", {nome, email, senha}).then((response) => {
             console.log(response.data)
         })
         setOpen(false);
     };
+
+    const handleClose = () => {
+
+        setOpen(false)
+    }
 
     return (
         <div>
@@ -77,7 +82,7 @@ export default function FormDialog() {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancelar</Button>
-                    <Button onClick={handleClose}>Registrar</Button>
+                    <Button onClick={handleForm}>Registrar</Button>
                 </DialogActions>
             </Dialog>
         </div>
