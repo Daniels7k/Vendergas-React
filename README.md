@@ -7,6 +7,10 @@ Este aplicativo foi desenvolvido utilizando React.js, foi feita uma integração
 
 Ainda falta a implementação da validação nos formulários, então se um formulário for enviado em branco o server cai.
 
+### Link para o repositório do back-end:
+
+https://github.com/Daniels7k/Vendergas-backend
+
 ## ✨ Tecnologias
 
 -   [ ] React.js
