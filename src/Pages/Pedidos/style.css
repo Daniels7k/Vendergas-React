@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Akshar:wght@500&display=swap');
+
+.pedidos-grid{
+    text-align: center;
+    display: grid;
+    grid-template-columns: 10% 20% 20% 20% 30%;
+    align-items: center;
+}
+
+.pedidos-info-header{
+    color: white;
+    background-color: #5031a2;
+    font-family: 'Akshar', sans-serif;
+    border-right: 1px solid white;
+    font-size: 20px;
+    padding: 20px;
+}
+
+.last{
+    border-right: none;
+}
+
+.pedidos-info{
+    font-family: 'Akshar', sans-serif;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    font-size: 20px;
+    padding: 20px;
+}
+
+.pedidos-status{
+    background-color: red;
+    color: white;
+}
+
+.pedidos-status:focus-within{
+    background-color: green;
+}
+
+.pedidos-acoes{
+    border-top: 1px solid white;
+    display: flex;
+    padding: 0;
+}
+
+.pedidos-button{
+    background-color: #5031a2;
+    width: 100%;
+    padding: 20px;
+    color: white;
+    border-right: 1px solid white;
+}
+
+.pedidos-button:hover{
+    cursor: pointer;
+    background-color: #4722ad;
+    }

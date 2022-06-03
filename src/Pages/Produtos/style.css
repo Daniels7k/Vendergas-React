@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Akshar:wght@500&display=swap');
+
+.produto-box{
+    width: 100%;
+    display: flex;
+    height: 25px;
+    margin-bottom: 27px;
+    align-items: center;
+}
+
+.produto-info-header{
+    font-family: 'Akshar', sans-serif;
+    border-right: 1px solid white;
+    width: 100%;
+    font-size: 25px;
+    height: 21px;
+    padding: 15px;
+    background-color: #5031a2;
+    color: white;
+}
+
+.button{
+    background-color: #5031a2;
+    color: white;
+   
+}
+
+#excluir{
+    border-left: 1px solid white;
+} 
+.button:hover{
+cursor: pointer;
+background-color: #4722ad;
+}
+
+.produto-actions{
+    display: flex;
+    width: 111%;
+    
+}
+.produto-info{
+    font-size: 20px;
+    font-family: 'Akshar', sans-serif;
+    border-bottom: 1px solid #5031a2;
+    border-right: 1px solid #5031a2;
+    width: 100%;
+    height: 20px;
+    padding: 15px;
+}

@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Akshar:wght@500&display=swap');
+
+
+.sidebar-container{
+    background-color: #5031a2;
+    height: 100vh;
+    width: 300px;
+}
+
+.sidebar-logo{
+    background-color: aliceblue;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.sidebar-logo img{
+    width: 90%;
+    height: 90%;
+}
+
+.sidebar-user{
+    font-family: 'Akshar', sans-serif;
+    color: whitesmoke;
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar-name{
+    margin-bottom: 20px;
+}
+
+.sidebar-list{
+    height: auto;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar-row{
+    width: 100%;
+    color: white;
+    height: 70px;
+    list-style-type: none;
+    margin: 0%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.sidebar-row:hover{
+    cursor: pointer;
+    background-color: #4722ad;
+}
+
+.sidebar-list #active{
+    background-color: #4722ad;
+}
+
+.sidebar-row #icon{
+    flex: 30%;
+    display: grid;
+    place-items: center;
+}
+
+.sidebar-row #title{
+    flex: 70%;
+}
