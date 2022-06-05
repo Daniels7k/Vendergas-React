@@ -4,6 +4,8 @@ import PageLayout from "../../Components/PageLayout";
 import api from "../../services/api"
 import AddDialog from "../../dialogsForm/empresaDialog/addDialog"
 import EditDialog from "../../dialogsForm/empresaDialog/editDialog"
+import { Snackbar } from '@mui/material';
+import Alert from '@mui/material/Alert';
 import "./style.css"
 
 
@@ -11,6 +13,7 @@ function Empresas() {
     const userID = localStorage.getItem("userID")
     const [empresas, setEmpresas] = useState()
     const [loading, setLoading] = useState(true)
+    const [snackOpen, setSnackOpen] = useState(false)
 
     useEffect(() => {
         const userID = localStorage.getItem("userID")
@@ -21,11 +24,15 @@ function Empresas() {
     }, [empresas])
 
     const excluirEmpresa = (empresaID) => {
-        api.delete(`/empresas/${userID}/${empresaID}/delete`).then((response) => {
-            console.log(response)
+        api.delete(`/empresas/${userID}/${empresaID}/delete`).then(() => {
+            setSnackOpen(true)
         })
 
         localStorage.removeItem("empresaName")
+    }
+
+    const handleClose = () => {
+        setSnackOpen(false)
     }
 
     const getEmpresaNameAndID = (empresaID, empresaName) => {
@@ -68,6 +75,13 @@ function Empresas() {
                     </div >
                 )
             })}
+            
+            <Snackbar open={snackOpen} anchorOrigin={{ vertical: "top", horizontal: "right" }} autoHideDuration={4000} onClose={handleClose}>
+                <Alert onClose={handleClose} variant="filled" severity="error" sx={{ width: '100%', marginRight: 4, marginTop: 1 }}>
+                    Excluido com sucesso!
+                </Alert>
+            </Snackbar>
+
         </PageLayout>
 
     )

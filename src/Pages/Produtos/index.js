@@ -4,10 +4,13 @@ import InventoryIcon from '@mui/icons-material/Inventory';
 import AddDialog from "../../dialogsForm/produtoDialog/AddDialog"
 import EditDialog from "../../dialogsForm/produtoDialog/EditDialog"
 import api from "../../services/api"
+import { Snackbar } from '@mui/material';
+import Alert from '@mui/material/Alert';
 import "./style.css"
 
 function Produtos() {
     const empresaName = localStorage.getItem("empresaName")
+    const [snackOpen, setSnackOpen] = useState(false)
     const [loading, setLoading] = useState(true)
     const [produto, setProduto] = useState()
 
@@ -22,12 +25,14 @@ function Produtos() {
     }, [produto])
 
     const excluirProduto = (produtoID) => {
-        api.delete(`/produtos/${produtoID}/delete`).then((response) => {
-            console.log(response)
+        api.delete(`/produtos/${produtoID}/delete`).then(() => {
+            setSnackOpen(true)
         })
     }
 
-
+    const handleClose = () => {
+        setSnackOpen(false)
+    }
 
     if (loading) {
         return <div><h1>loading...</h1></div>
@@ -37,7 +42,7 @@ function Produtos() {
 
         <PageLayout
             icon={<InventoryIcon sx={{ fontSize: 60 }} />}
-            pageName={`Produtos da Empresa: ${empresaName}`}
+            pageName={`Produtos da Empresa: ${empresaName? (empresaName) : ("Nenhuma empresa selecionada!")}`}
             addName={"Produto"}
             classFlex={"flex-row-container"}
             header={<AddDialog />}
@@ -77,6 +82,12 @@ function Produtos() {
                 })}
 
             </div>
+
+            <Snackbar open={snackOpen} anchorOrigin={{ vertical: "top", horizontal: "right" }} autoHideDuration={4000} onClose={handleClose}>
+                <Alert onClose={handleClose} variant="filled" severity="error" sx={{ width: '100%', marginRight: 4, marginTop: 1 }}>
+                    Excluido com sucesso!
+                </Alert>
+            </Snackbar>
 
         </PageLayout>
 

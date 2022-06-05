@@ -5,10 +5,13 @@ import AddDialog from "../../dialogsForm/pedidoDialog/AddDialog"
 import InfoDialog from "../../dialogsForm/pedidoDialog/InfoDialog"
 import api from "../../services/api";
 import "./style.css"
+import { Snackbar } from '@mui/material';
+import Alert from '@mui/material/Alert';
 
 function Pedidos() {
     const empresaName = localStorage.getItem("empresaName")
 
+    const [snackOpen, setSnackOpen] = useState(false)
     const [loading, setLoading] = useState(true)
     const [pedidos, setPedidos] = useState()
 
@@ -22,8 +25,15 @@ function Pedidos() {
 
 
     const deletarPedido = (pedidoID) => {
-        api.delete(`/pedidos/${pedidoID}/delete`)
+        api.delete(`/pedidos/${pedidoID}/delete`).then(() => {
+            setSnackOpen(true)
+        })
     }
+
+    const handleClose = () => {
+        setSnackOpen(false)
+    }
+
 
     if (loading) {
         return <div><h1>Loading...</h1></div>
@@ -32,7 +42,7 @@ function Pedidos() {
     return (
         <PageLayout
             icon={<AssignmentIcon sx={{ fontSize: 60 }} />}
-            pageName={`Pedidos das Empresa: ${empresaName}`}
+            pageName={`Pedidos das Empresa: ${empresaName? (empresaName) : ("Nenhuma empresa selecionada!")}`}
             addName={"Pedidos"}
             classFlex={"flex-row-container"}
             header={<AddDialog />}
@@ -75,8 +85,14 @@ function Pedidos() {
 
 
             </div>
-
+            <Snackbar open={snackOpen} anchorOrigin={{ vertical: "top", horizontal: "right" }} autoHideDuration={4000} onClose={handleClose}>
+                <Alert onClose={handleClose} variant="filled" severity="error" sx={{ width: '100%', marginRight: 4, marginTop: 1 }}>
+                    Excluido com sucesso!
+                </Alert>
+            </Snackbar>
         </PageLayout>
+
+        
     )
 }
 
