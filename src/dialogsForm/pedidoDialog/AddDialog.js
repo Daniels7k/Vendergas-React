@@ -49,6 +49,8 @@ export default function FormDialog(props) {
 
 
     const handleForm = async () => {
+        if(!empresaID) return (setStatus({type:"error", message:"Crie e selecione uma empresa antes!"}))
+        
         if (!(await validate())) return
 
         api.post(`/pedidos/${empresaID}/create`, {cliente, produto, quantidadeProduto, observacao, data, empresa}).then(() => {
