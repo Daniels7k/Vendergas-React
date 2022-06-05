@@ -7,31 +7,72 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import api from "../../services/api"
+import * as yup from "yup"
 import AddBoxIcon from '@mui/icons-material/AddBox';
+import Alert from '@mui/material/Alert';
+import { Snackbar } from '@mui/material';
 
 export default function FormDialog(props) {
+
+    //HOOKS
     const [open, setOpen] = React.useState(false);
+    const [snackOpen, setSnackOpen] = useState(false)
     const [nomeFantasia, setNomeFantasia] = useState()
     const [razaoSocial, setRazaoSocial] = useState()
     const [cnpj, setCnpj] = useState()
+
+    //HOOK ALERT
+    const [status, setStatus] = useState({
+        type: '',
+        message: ''
+    });
+
+    //FUNÇÕES
 
     const handleClickOpen = () => {
         setOpen(true);
 
     };
 
-    const handleForm = () => {
+    const handleForm = async () => {
+
+        if (!(await validate())) return
+
         setOpen(false);
-        api.post(`/empresas/${props.userID}/create`, { nomeFantasia, razaoSocial, cnpj }).then((response) => {
-            console.log(response)
+        api.post(`/empresas/${props.userID}/create`, { nomeFantasia, razaoSocial, cnpj }).then(() => {
+            setSnackOpen(true)
         })
     };
 
     const handleClose = () => {
 
         setOpen(false)
+        setSnackOpen(false)
     }
 
+    //YUP
+
+    async function validate() {
+        let schema = yup.object().shape({
+            cnpj: yup.string("CNPJ obrigatório!").required("CNPJ obrigatório!"),
+            razaoSocial: yup.string("Razão social obrigatória!").required("Razão social obrigatória!"),
+            nomeFantasia: yup.string("Nome fantasia obrigatório!").required("Nome fantasia obrigatório!")
+        })
+
+        try {
+            await schema.validate({ nomeFantasia, razaoSocial, cnpj })
+            return true
+
+        } catch (error) {
+
+            setStatus({
+                type: "error",
+                message: error.errors
+            })
+
+            return false
+        }
+    }
     return (
         <div>
             <div className="empresas-container-header" variant="outlined" onClick={handleClickOpen}>
@@ -41,6 +82,7 @@ export default function FormDialog(props) {
 
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Adicionar Empresa</DialogTitle>
+                {status.type === 'error' ? <Alert severity="error">{status.message}</Alert> : ""}
                 <DialogContent>
                     <TextField
                         autoFocus
@@ -81,6 +123,12 @@ export default function FormDialog(props) {
                     <Button onClick={handleForm}>Adicionar</Button>
                 </DialogActions>
             </Dialog>
+
+            <Snackbar open={snackOpen} anchorOrigin={{ vertical: "top", horizontal: "right" }} autoHideDuration={4000} onClose={handleClose}>
+                <Alert onClose={handleClose} variant="filled" severity="success" sx={{ width: '100%', marginRight: 4, marginTop: 1 }}>
+                    Cadastrado com sucesso!
+                </Alert>
+            </Snackbar>
         </div>
     );
 }

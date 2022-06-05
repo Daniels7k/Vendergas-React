@@ -26,7 +26,7 @@ function AuthProvider({ children }) {
 
     function handleLogin(email, senha) {
 
-        api.post("/usuarios/login", {email, senha}).then((response) => {
+       return (api.post("/usuarios/login", {email, senha}).then((response) => {
 
             const userID = response.data.id
             const userName = response.data.nome
@@ -41,7 +41,7 @@ function AuthProvider({ children }) {
             
             setAuthenticated(true)
             navigate(`/empresas`)
-        })
+        }))
 
             
     }

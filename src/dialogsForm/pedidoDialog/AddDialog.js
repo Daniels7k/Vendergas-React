@@ -9,6 +9,9 @@ import DialogTitle from '@mui/material/DialogTitle';
 import MenuItem from '@mui/material/MenuItem';
 import api from "../../services/api"
 import AddBoxIcon from '@mui/icons-material/AddBox';
+import Alert from '@mui/material/Alert';
+import * as yup from "yup";
+import { Snackbar } from '@mui/material';
 
 export default function FormDialog(props) {
     const [open, setOpen] = React.useState(false);
@@ -19,40 +22,73 @@ export default function FormDialog(props) {
     const [clientes, setClientes] = useState() // array do banco de dados
     const [produtos, setProdutos] = useState() // array do banco de dados
 
+    const [snackOpen, setSnackOpen] = useState(false)
     const [cliente, setCliente] = useState()
     const [produto, setProduto] = useState()
     const [quantidadeProduto, setQuantidadeProduto] = useState()
     const [observacao, setObservacao] = useState()
     const [data, setData] = useState()
 
+    const [status, setStatus] = useState({
+        type: '',
+        message: ''
+    });
 
     const handleClickOpen = async () => {
 
         await api.post(`/clientes/${empresaID}/index`).then((clientes) => {
-            console.log(clientes)
             setClientes(clientes.data)
         })
 
         await api.post(`/produtos/${empresaID}/index`).then((produtos) => {
-            console.log(produtos.data)
             setProdutos(produtos.data)
         })
 
         setOpen(true);
     };
 
-    const handleForm = () => {
-        api.post(`/pedidos/${empresaID}/create`, {cliente, produto, quantidadeProduto, observacao, data, empresa}).then((response) => {
-            console.log(response)
+
+    const handleForm = async () => {
+        if (!(await validate())) return
+
+        api.post(`/pedidos/${empresaID}/create`, {cliente, produto, quantidadeProduto, observacao, data, empresa}).then(() => {
+            setSnackOpen(true)
         })
+
         setOpen(false);
+        setStatus("")
     };
 
     const handleClose = () => {
 
         setOpen(false)
+        setStatus("")
+        setSnackOpen(false)
     }
 
+
+    async function validate() {
+        let schema = yup.object().shape({
+            data: yup.string("Data obrigatória!").required("Data obrigatória!"),
+            quantidadeProduto: yup.string("Quantidade de produto obrigatória!").required("Quantidade de produto obrigatória!"),
+            produto: yup.string("Produto obrigatório!").required("Produto obrigatório!"),
+            cliente: yup.string("Cliente obrigatório!").required("Cliente obrigatório!")
+        })
+
+        try {
+            await schema.validate({ cliente, produto, quantidadeProduto, data})
+            return true
+
+        } catch (error) {
+
+            setStatus({
+                type: "error",
+                message: error.errors
+            })
+
+            return false
+        }
+    }
 
     return (
         <div>
@@ -62,7 +98,8 @@ export default function FormDialog(props) {
             </div>
 
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Adicionar Pedido (Empresa EDU Lanches)</DialogTitle>
+                <DialogTitle>Adicionar Pedido (Empresa {empresa})</DialogTitle>
+                {status.type === 'error' ? <Alert severity="error">{status.message}</Alert> : ""}
                 <DialogContent>
 
                     <TextField
@@ -144,6 +181,12 @@ export default function FormDialog(props) {
                     <Button onClick={handleForm}>Adicionar</Button>
                 </DialogActions>
             </Dialog>
+
+            <Snackbar open={snackOpen} anchorOrigin={{ vertical: "top", horizontal: "right" }} autoHideDuration={4000} onClose={handleClose}>
+                <Alert onClose={handleClose} variant="filled" severity="success" sx={{ width: '100%', marginRight: 4, marginTop: 1 }}>
+                    Cadastrado com sucesso!
+                </Alert>
+            </Snackbar>
         </div>
     );
 }

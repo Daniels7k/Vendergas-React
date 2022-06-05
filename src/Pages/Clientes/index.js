@@ -4,14 +4,16 @@ import PersonIcon from '@mui/icons-material/Person';
 import PageLayout from "../../Components/PageLayout"
 import AddDialog from "../../dialogsForm/clienteDialog/AddDialog"
 import EditDialog from "../../dialogsForm/clienteDialog/EditDialog"
+import { Snackbar } from '@mui/material';
+import Alert from '@mui/material/Alert';
 import api from "../../services/api";
 
 import "./style.css"
 
 function Clientes() {
     const empresaName = localStorage.getItem("empresaName")
-    
 
+    const [snackOpen, setSnackOpen] = useState(false)
     const [loading, setLoading] = useState(true)
     const [cliente, setCliente] = useState()
 
@@ -25,9 +27,13 @@ function Clientes() {
 
 
     const excluirCliente = (clienteID) => {
-        api.delete(`/clientes/${clienteID}/delete`).then((response) => {
-            console.log(response)
+        api.delete(`/clientes/${clienteID}/delete`).then(() => {
+            setSnackOpen(true)
         })
+    }
+
+    const handleClose = () => {
+        setSnackOpen(false)
     }
 
     if (loading) {
@@ -37,7 +43,7 @@ function Clientes() {
 
     return (
         <PageLayout
-            pageName={`Clientes da Empresa: ${empresaName}`}
+            pageName={`Clientes da Empresa: ${ empresaName? (empresaName) : ("Nenhuma empresa selecionada!") }`}
             addName={"Cliente"}
             icon={<PersonIcon sx={{ fontSize: 60 }} />}
             classFlex={"flex-column-container"}
@@ -54,12 +60,12 @@ function Clientes() {
                         <h5 className="cliente-info">Empresa: {val.empresa}</h5>
                         <div className="cliente row">
                             <EditDialog
-                            clienteID={val._id}
-                            edit={"Editar"}
-                            nome={val.nome}
-                            email={val.email}
-                            telefone={val.telefone}
-                            empresa={val.empresa}
+                                clienteID={val._id}
+                                edit={"Editar"}
+                                nome={val.nome}
+                                email={val.email}
+                                telefone={val.telefone}
+                                empresa={val.empresa}
                             />
                         </div>
                         <div className="cliente row row-excluir" onClick={() => excluirCliente(val._id)}>Excluir</div>
@@ -67,6 +73,11 @@ function Clientes() {
                 )
             })}
 
+            <Snackbar open={snackOpen} anchorOrigin={{ vertical: "top", horizontal: "right" }} autoHideDuration={4000} onClose={handleClose}>
+                <Alert onClose={handleClose} variant="filled" severity="error" sx={{ width: '100%', marginRight: 4, marginTop: 1 }}>
+                    Excluido com sucesso!
+                </Alert>
+            </Snackbar>
 
         </PageLayout>
 

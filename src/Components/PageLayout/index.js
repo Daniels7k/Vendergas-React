@@ -12,6 +12,7 @@ function PageLayout(props) {
 
                 <div className="empresas-header">
                     {props.icon}
+                    
                     <h1>{props.pageName}</h1>
                 </div>
 

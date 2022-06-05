@@ -139,6 +139,10 @@ h2 {
     width: 80%;
 }
 
+.error-msg{
+    margin-top: 10px;
+    height: 20px;
+}
 
 @media screen and (max-width: 900px) {
     .box {
