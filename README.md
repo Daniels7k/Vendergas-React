@@ -5,8 +5,6 @@
 Este aplicativo foi desenvolvido utilizando React.js, foi feita uma integração com o back.end utilizando o axios com tratavivas de erros nas requests com o serverSide,  O sistema também conta com a utilização da APIContext, e a proteção de rotas, contendo rotas públicas e privadas, para a evitar o excesso de páginas foi utilizado o component Dialog, para criar um PopUP para cada formulário.
 
 
-Ainda falta a implementação da validação nos formulários, então se um formulário for enviado em branco o server cai.
-
 ### Link para o repositório do back-end:
 
 https://github.com/Daniels7k/Vendergas-backend
